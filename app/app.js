@@ -1,15 +1,16 @@
 //Module declarations
-var app = anuglar.module("recipesApp", []);
+var app = angular.module("recipesApp", ['ngRoute']);
 app.config(function($routeProvider) {
 	$routeProvider
-		.when('/recipes', 
+		.when('/recipeSearch', 
 			{ 
 				controller: 'recipeController',
-				templateUrl: '/app/partials/recipes.html'
+				templateUrl: 'app/partials/recipeSearch.html'
 			})
-		.when('/recipeProfile/:recipeID', 
+		.when('/recipeList', 
 			{
-				controller: 'recipleProfile',
-				templateUrl: '/app/partials/recipeProfile.html'
+				controller: 'recipleController',
+				templateUrl: 'app/partials/recipeList.html'
 			})
-};
+		.otherwise({ redirectTo: '/recipeSearch' });
+});

@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html ng-app="recipesApp">
+<html>
 <head>
 <title>Recipe Lookup</title>
 <link rel="stylesheet" href="styles.css" />
@@ -10,14 +10,14 @@
 
 </head>
  
-<body>
+<body ng-app="recipesApp">
 
 <nav class="navbar navbar-inverse">
 	<div>
 		<a class="navbar-brand" href="#">Recipe Lookup</a>
-		<ul class="nav navbar-nav">
-			<li><a href="#">Recipe List</a></li>
-			<li><a href="#">Link</a></li>
+		<ul class="nav navbar-nav" ng-controller="navController">
+			<li ng-class="{'active': isPath('/recipeSearch')}"><a href="#/recipeSearch">Recipe Search</a></li>
+			<li ng-class="{'active': isPath('/recipeList')}"><a href="#/recipeList">Recipe List</a></li>
 	     </ul>
 	     <form class="navbar-form navbar-left">
 	        <div class="form-group">
@@ -32,6 +32,7 @@
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-route.js"></script>
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -40,7 +41,8 @@
 
 <!-- Custom JS -->
 <script type="text/javascript" src="app/app.js"></script>
-<script type="text/javascript" src="app/controllers/controller.js"></script>
+<script type="text/javascript" src="app/controllers/controllers.js"></script>
+<script type="text/javascript" src="app/services/recipeFactory.js"></script>
 </body>
 
  

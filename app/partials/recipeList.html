@@ -1,0 +1,24 @@
+<div class="recipes">
+	<div class="container">
+		<div class="row recipeAdder">
+			<input type="text" placeholder="Recipe Name">
+			<br><br>
+			<div>
+				<input class="form-inline" type="text" placeholder="Ingredient">
+				<input class="form-inline" type="text" placeholder="Amount">
+			</div>
+			<br><br>
+			<textarea class="form-control" rows="3"></textarea>
+		</div>
+
+		<div class="row recipeContainer">
+			<div class="recipeSingle" ng-repeat="r in recipes | orderBy: 'name' ">
+				 <button class="btn close" data-ng-click="deleteRecipe(recipe.id)">&times;</button>
+				 <div class="rName"> {{ r.name }} </div>
+				 <div class="rIngredients"> {{ r.ingredients }} </div>
+				 <div class="rDirections"> {{ r.directions }} </div>
+			</div>
+		</div>
+	</div>
+
+</div>
