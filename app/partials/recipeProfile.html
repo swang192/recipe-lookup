@@ -1,0 +1,21 @@
+<div class="recipeProfile">
+	<div class="container">
+	<br><br>
+			<div class="row col-md-10 col-md-offset-1">
+				<div class="col-xs-6">
+					<h3 class="row rName"> {{ currentRecipe.name }} </h3>
+					<h4>Ingredients</h4>
+					<ul class="ingredientsList">
+					<li ng-repeat="ing in currentRecipe.ingredients">{{ ing.i + ": " + ing.a }}</li>
+				</ul>
+				</div>
+				<img ng-src="{{ currentRecipe.image }}" class="col-xs-4 img-responsive rImg">
+			</div>
+			<div class="row col-md-10 col-md-offset-1 rDirections">
+				<h4>Directions</h4>
+				<ol class="directionsList">
+					<li ng-repeat="dir in currentRecipe.directions">{{ dir.d }}</li>
+				</ol>
+			</div>
+	</div>
+</div>

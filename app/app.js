@@ -9,8 +9,13 @@ app.config(function($routeProvider) {
 			})
 		.when('/recipeList', 
 			{
-				controller: 'recipleController',
+				controller: 'recipeController',
 				templateUrl: 'app/partials/recipeList.html'
+			})
+		.when('/recipes/:recipeID',
+			{
+				controller: 'recipeProfileController',
+				templateUrl: 'app/partials/recipeProfile.html'
 			})
 		.otherwise({ redirectTo: '/recipeSearch' });
 });

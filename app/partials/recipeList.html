@@ -1,22 +1,39 @@
 <div class="recipes">
 	<div class="container">
-		<div class="row recipeAdder">
-			<input type="text" placeholder="Recipe Name">
+		<h3 class="row">Add a Recipe:</h3>
+		<form class="row recipeAdder form-group" name="rForm">
+			<!--<span ng-show="rForm.rName.$error.required">*</span>-->
+			<input ng-model="newRecipe.name" name="rName" type="text" placeholder="Recipe Name" required>
+			
 			<br><br>
-			<div>
-				<input class="form-inline" type="text" placeholder="Ingredient">
-				<input class="form-inline" type="text" placeholder="Amount">
+			<div ng-repeat="ing in iCounter" class="ingredientFields">
+				<!--<span ng-show="rForm.rIng.$error.required && rForm.rAmt.$error.required" ng-if="$first">*</span>-->
+				<input ng-model="ing.i" name="rIng" class="form-inline" type="text" placeholder="Ingredient" required>
+				<input ng-model="ing.a" name="rAmt" class="form-inline" type="text" placeholder="Amount" required>
+				<button ng-click="addIngredientField()" ng-if="$last" class="btn btn-info form-inline">+</button>	
+				<br>			
 			</div>
-			<br><br>
-			<textarea class="form-control" rows="3"></textarea>
-		</div>
+			<br>
+			<div ng-repeat="dir in dCounter" class="directionFields">
+				<!--<span ng-show="rForm.rDir.$error.required" ng-if="$first">*</span>-->
+				<textarea ng-model="dir.d"" name="rDir" class="form-control" type="text" placeholder="Directions" rows="3" required></textarea>
+				<br>
+				<button ng-click="addDirectionField()" ng-if="$last" class="btn btn-info">+</button>
+				<br>
+			</div>
+			
+			
+			<br>
+			<input type="submit" ng-click="addRecipe()" class="btn btn-info" value="Add Recipe"></submit>
+		</form>
 
 		<div class="row recipeContainer">
-			<div class="recipeSingle" ng-repeat="r in recipes | orderBy: 'name' ">
-				 <button class="btn close" data-ng-click="deleteRecipe(recipe.id)">&times;</button>
-				 <div class="rName"> {{ r.name }} </div>
-				 <div class="rIngredients"> {{ r.ingredients }} </div>
-				 <div class="rDirections"> {{ r.directions }} </div>
+			<div ng-repeat="r in recipes | orderBy: 'name'" class="col-md-3 recipeSingle">
+				 <button class="btn close" data-ng-click="deleteRecipe(r.id)">&times;</button>
+				 <a href="#/recipes/{{ r.id }}">
+				 	<h4 class="rName"> {{ r.name }} </h4>
+				 	<img ng-src="{{ r.image }}" class="img-rounded" width="200px">
+				 </a>
 			</div>
 		</div>
 	</div>

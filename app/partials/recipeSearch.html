@@ -1,16 +1,18 @@
 <div class="recipes">
 	<div class="container">
 		<div class="row recipeSearch">
-			<input ng-model="ingredients" type="text" placeholder="Search ingredient">
+			<input ng-model="ingred" type="text" class="form-control" placeholder="Search ingredient">
 		</div>
 		<br>
 		<div class="row recipeContainer">
-			<div class="recipeSingle" ng-repeat="r in recipes | orderBy: 'name' | filter: 'ingredients'">
-				 <button class="btn close" data-ng-click="deleteRecipe(recipe.id)">&times;</button>
-				 <div class="rName"> {{ r.name }} </div>
-				 <div class="rIngredients"> {{ r.ingredients }} </div>
-				 <div class="rDirections"> {{ r.directions }} </div>
+			<div ng-repeat="r in recipes | orderBy: 'name' | filter: ingred" class="col-md-3 recipeSingle">
+				 <button class="btn close" data-ng-click="deleteRecipe(r.id)">&times;</button>
+				 <a href="#/recipes/{{ r.id }}">
+				 	<h4 class="rName"> {{ r.name }} </h4>
+				 	<img ng-src="{{ r.image }}" class="img-rounded" width="200px">
+				 </a>	 
 			</div>
+
 		</div>
 	</div>
 

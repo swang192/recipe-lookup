@@ -1,0 +1,14 @@
+.recipeSingle {
+	border: 2px lightgrey solid;
+	margin: 10px 5px;
+	padding: 10px;
+	text-align: center;
+}
+
+.ingredientsList {
+	list-style-type: none;
+}
+
+.rImg {
+	float: right;
+}
