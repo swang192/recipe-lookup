@@ -1,11 +1,24 @@
 <div class="recipes">
 	<div class="container">
-		<div class="row recipeSearch">
-			<input ng-model="ingred" type="text" class="form-control" placeholder="Search ingredient">
+		<h3 class="row">Search recipes by ingredients. Enter ingredients one by one to filter recipes.</h3>
+		<br>
+		<form class="row form-inline recipeSearch">
+			<input ng-model="ingred" type="text" class="form-control searchBar" placeholder="Search ingredients">
+			<input ng-click="addTag()" class="btn btn-info" type="submit" value="go">
+		</form>
+		<br>
+		<div class="row tagsContainer">
+			<div ng-repeat="t in tags | orderBy: 'name'" class="tag">
+				<span>{{ t.name }}
+					<button data-ng-click="deleteTag(t.id)" class="btn close deleteTag">x</button>
+				</span>
+			</div>
+			<button ng-if="tags.length > 0" ng-click="clearTags()" class="tag clearTags">clear all filters</button>
 		</div>
 		<br>
+
 		<div class="row recipeContainer">
-			<div ng-repeat="r in recipes | orderBy: 'name' | filter: ingred" class="col-md-3 recipeSingle">
+			<div ng-repeat="r in recipes | orderBy: 'name' | filterByTags: tags" class="col-md-3 recipeSingle">
 				 <button class="btn close" data-ng-click="deleteRecipe(r.id)">&times;</button>
 				 <a href="#/recipes/{{ r.id }}">
 				 	<h4 class="rName"> {{ r.name }} </h4>

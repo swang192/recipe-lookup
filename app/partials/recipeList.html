@@ -1,32 +1,37 @@
 <div class="recipes">
 	<div class="container">
 		<h3 class="row">Add a Recipe:</h3>
-		<form class="row recipeAdder form-group" name="rForm">
-			<!--<span ng-show="rForm.rName.$error.required">*</span>-->
-			<input ng-model="newRecipe.name" name="rName" type="text" placeholder="Recipe Name" required>
+
+		<form ng-class="{'submitted': submitted}" class="row form-group recipeAdder" name="rForm">
+			<div class="form-inline">
+				<!--<span ng-show="rForm.rName.$error.required">*</span>-->
+				<input ng-model="newRecipe.name" name="rName" class="form-control" type="text" placeholder="Recipe Name" required>
+			</div>
+				
+			<br>
 			
-			<br><br>
-			<div ng-repeat="ing in iCounter" class="ingredientFields">
+			<div ng-repeat="ing in iCounter" class="form-inline ingredientFields">
 				<!--<span ng-show="rForm.rIng.$error.required && rForm.rAmt.$error.required" ng-if="$first">*</span>-->
-				<input ng-model="ing.i" name="rIng" class="form-inline" type="text" placeholder="Ingredient" required>
-				<input ng-model="ing.a" name="rAmt" class="form-inline" type="text" placeholder="Amount" required>
-				<button ng-click="addIngredientField()" ng-if="$last" class="btn btn-info form-inline">+</button>	
-				<br>			
+				<input ng-model="ing.i" name="rIng" class="form-control" type="text" placeholder="Ingredient" ng-required="$first">
+				<input ng-model="ing.a" name="rAmt" class="form-control" type="text" placeholder="Amount" ng-required="$first">
+				<button ng-click="addIngredientField()" ng-if="$last" class="btn btn-info">+</button>	
+				<button ng-click="deleteIngredientField()" ng-if="$last && $index > 0" class="btn btn-info">-</button>
+				<br><br>			
 			</div>
-			<br>
-			<div ng-repeat="dir in dCounter" class="directionFields">
+			
+			<div ng-repeat="dir in dCounter" class="form-group directionFields">
 				<!--<span ng-show="rForm.rDir.$error.required" ng-if="$first">*</span>-->
-				<textarea ng-model="dir.d"" name="rDir" class="form-control" type="text" placeholder="Directions" rows="3" required></textarea>
-				<br>
+				<textarea ng-model="dir.d"" name="rDir" class="form-control" type="text" placeholder="Directions" rows="3" ng-required="$first"></textarea>
+				<br ng-if="$last">
 				<button ng-click="addDirectionField()" ng-if="$last" class="btn btn-info">+</button>
-				<br>
+				<button ng-click="deleteDirectionField()" ng-if="$last && $index > 0" class="btn btn-info">-</button>
 			</div>
 			
-			
 			<br>
-			<input type="submit" ng-click="addRecipe()" class="btn btn-info" value="Add Recipe"></submit>
+			<input type="submit" ng-click="submitted= true; addRecipe()" class="btn btn-info" value="Add Recipe"></input>
 		</form>
 
+		
 		<div class="row recipeContainer">
 			<div ng-repeat="r in recipes | orderBy: 'name'" class="col-md-3 recipeSingle">
 				 <button class="btn close" data-ng-click="deleteRecipe(r.id)">&times;</button>
@@ -36,6 +41,6 @@
 				 </a>
 			</div>
 		</div>
-	</div>
+	</div>	
 
 </div>

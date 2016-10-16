@@ -12,3 +12,27 @@
 .rImg {
 	float: right;
 }
+
+.tag {
+	color: white;
+	font-weight: 1.5em;
+	border-radius: 5px;
+	background-color: #5bc0de;
+	position: relative;
+	float: left;
+	padding: 8px;
+	margin: 3px; 
+}
+
+.deleteTag {
+	margin-left: 3px;
+}
+
+.clearTags {
+	border: none;
+	background-color: #999999;
+}
+
+form.submitted .ng-invalid {
+    border: 1px solid red;
+}

@@ -29,10 +29,16 @@ app.factory("recipeFactory", function() {
 
 	];
 
+	var tags = [];
+
 	var factory = {};
 
 	factory.getRecipes = function() {
 		return recipes;
+	};
+
+	factory.getTags = function() {
+		return tags;
 	};
 	
 	factory.insertRecipe = function(name, ingredients, directions) {
@@ -41,14 +47,35 @@ app.factory("recipeFactory", function() {
 			id: newId,
 			name: name,
 			ingredients: ingredients,
-			directions: directions
+			directions: directions,
+			image: 'images/food_placeholder.png'
 		});
+	};
+
+	factory.insertTag = function(name) {
+		var newId = tags.length + 1;
+		tags.push({
+			id: newId,
+			name: name
+		});
+	};
+
+	factory.clearTags = function() {
+		tags.length = 0;
 	};
 
 	factory.deleteRecipe = function(id) {
 		for (var i = 0; i < recipes.length; i++) {
 			if (recipes[i].id === id) {
 				recipes.splice(i, 1);
+			}
+		}
+	};
+
+	factory.deleteTag = function(id) {
+		for (var i = 0; i < tags.length; i++) {
+			if (tags[i].id === id) {
+				tags.splice(i, 1);
 			}
 		}
 	};
@@ -62,6 +89,6 @@ app.factory("recipeFactory", function() {
 		return null;
 	};
 
-
+	
 	return factory;
 });
