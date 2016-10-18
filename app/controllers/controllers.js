@@ -1,4 +1,4 @@
-﻿app.controller("recipeController", function($scope, recipeFactory) {
+﻿app.controller("recipeController", function($scope, $route, recipeFactory) {
 
 	$scope.iCounter = [{i: "", a: ""}]; //ingredients array 
 	$scope.dCounter = [{}];				//directions array
@@ -11,12 +11,16 @@
 	}
 
 	$scope.addRecipe = function() {
-		if ($scope.newRecipe.name != "" && $scope.iCounter[0].i != "" && $scope.iCounter[0].a !="" and )
-		var name = $scope.newRecipe.name;
-		var ingredients = $scope.iCounter;
-		var directions = $scope.dCounter;
-		recipeFactory.insertRecipe(name, ingredients, directions);
-		$scope.newRecipe = null;
+		if ($scope.newRecipe.name !== "" && 
+			$scope.iCounter[$scope.iCounter.length - 1].i !== "" && 
+			$scope.iCounter[$scope.iCounter.length - 1].a !== "" && 
+			$scope.dCounter[$scope.dCounter.length - 1].d !== "") {
+				var name = $scope.newRecipe.name;
+				var ingredients = $scope.iCounter;
+				var directions = $scope.dCounter;
+				recipeFactory.insertRecipe(name, ingredients, directions);
+				$route.reload();
+		}
 	};
 
 	$scope.addTag = function() {
